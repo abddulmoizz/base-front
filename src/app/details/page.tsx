@@ -46,7 +46,7 @@ async function getCategories(): Promise<Category[]> {
   } catch (error) {
     console.error("Failed to fetch categories, using mock data:", error)
 
-    // Return mock categories when API fails
+    // mock data agar api nahi chal rahi
     return [
       {
         id: 1,
@@ -118,11 +118,11 @@ async function getBannerImage(): Promise<string | null> {
       next: { revalidate: 3600 },
     })
 
-    if (!res.ok) return "/images/banner.png" // Use local banner as fallback
+    if (!res.ok) return "/images/banner.png" // local banner agar banner na chalay - provided by strapi
 
     const galleryData = await res.json()
     const avifImage = galleryData.data
-      ?.flatMap((gallery: Gallery) => gallery.carosel || [])
+      ?.flatMap((gallery: Gallery) => gallery.carosel || []) //pulling out images
       ?.find((img: GalleryImage) => img.url?.includes("gav01_1920x612_1_8a973f6ebb.avif"))
 
     if (avifImage) {
