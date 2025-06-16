@@ -24,7 +24,7 @@ interface ApiResponse {
   data: ApiProduct[]
 }
 
-// Server-side data fetching
+// Server-side wali fetching
 async function getProducts(): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}/api/products?populate=*`, {
@@ -46,7 +46,7 @@ async function getProducts(): Promise<Product[]> {
   } catch (error) {
     console.error("Error fetching products from API, using mock data:", error)
 
-    // Provide mock data when API fails
+   // incase aoi fail
     return [
       {
         id: 1,
@@ -116,7 +116,7 @@ async function getProducts(): Promise<Product[]> {
   }
 }
 
-// Server Component - runs on server
+//  runs on server
 export default async function CasioLandingPage() {
   const products = await getProducts() // Server-side fetch
 
@@ -162,7 +162,7 @@ export default async function CasioLandingPage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">Recommended for You</h2>
             </div>
 
-            {/* Client Component for interactive carousel */}
+            {/* Client  carousel */}
             <ProductCarousel products={products} />
           </div>
         </section>
